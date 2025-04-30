@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sistema de Gincana</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background-color: #f9f9f9;
+    }
+    h2 {
+      color: #333;
+    }
+    form {
+      background-color: #fff;
+      padding: 15px;
+      margin-bottom: 30px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+    }
+    button {
+      margin-top: 15px;
+      padding: 10px 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+    th, td {
+      border: 1px solid #aaa;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #eee;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Cadastro de Equipe</h2>
+  <form id="formEquipe">
+    <label>Nome da Equipe:</label>
+    <input type="text" name="nomeEquipe" required />
+
+    <label>Responsável:</label>
+    <input type="text" name="responsavel" required />
+
+    <label>Email:</label>
+    <input type="email" name="email" required />
+
+    <label>Integrantes (separados por vírgula):</label>
+    <input type="text" name="integrantes" />
+
+    <button type="submit">Cadastrar Equipe</button>
+  </form>
+
+  <h2>Cadastro de Prova</h2>
+  <form id="formProva">
+    <label>Nome da Prova:</label>
+    <input type="text" name="nomeProva" required />
+
+    <label>Descrição:</label>
+    <textarea name="descricao" rows="3"></textarea>
+
+    <label>Data:</label>
+    <input type="date" name="data" />
+
+    <label>Pontuação Máxima:</label>
+    <input type="number" name="pontuacaoMaxima" />
+
+    <button type="submit">Cadastrar Prova</button>
+  </form>
+
+  <h2>Registro de Pontuação</h2>
+  <form id="formPontuacao">
+    <label>Equipe:</label>
+    <input type="text" name="equipe" required />
+
+    <label>Prova:</label>
+    <input type="text" name="prova" required />
+
+    <label>Pontuação Obtida:</label>
+    <input type="number" name="pontuacao" required />
+
+    <button type="submit">Registrar Pontuação</button>
+  </form>
+
+  <h2>Ranking (Exemplo Estático)</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Posição</th>
+        <th>Equipe</th>
+        <th>Pontuação Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1º</td>
+        <td>Equipe Fênix</td>
+        <td>120</td>
+      </tr>
+      <tr>
+        <td>2º</td>
+        <td>Equipe Relâmpago</td>
+        <td>100</td>
+      </tr>
+    </tbody>
+  </table>
+  
+</body>
+</html>
