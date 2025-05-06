@@ -111,16 +111,93 @@
     <tbody>
       <tr>
         <td>1º</td>
-        <td>Equipe Fênix</td>
-        <td>120</td>
+        <td></td>
+        <td></td>
       </tr>
       <tr>
         <td>2º</td>
-        <td>Equipe Relâmpago</td>
-        <td>100</td>
+        <td></td>
+        <td></td>
       </tr>
     </tbody>
   </table>
+  <script>
+    // Arrays para armazenar as informações das equipes, provas e pontuação
+    const equipes = [];
+    const provas = [];
+    const pontuacoes = [];
+  
+    // Função para cadastrar equipe
+    document.getElementById("formEquipe").addEventListener("submit", function(event) {
+      event.preventDefault();
+      const nomeEquipe = event.target.nomeEquipe.value;
+      const responsavel = event.target.responsavel.value;
+      const email = event.target.email.value;
+      const integrantes = event.target.integrantes.value.split(',');
+  
+      equipes.push({ nomeEquipe, responsavel, email, integrantes });
+      alert('Equipe cadastrada com sucesso!');
+      event.target.reset();
+    });
+  
+    // Função para cadastrar prova
+    document.getElementById("formProva").addEventListener("submit", function(event) {
+      event.preventDefault();
+      const nomeProva = event.target.nomeProva.value;
+      const descricao = event.target.descricao.value;
+      const data = event.target.data.value;
+      const pontuacaoMaxima = event.target.pontuacaoMaxima.value;
+  
+      provas.push({ nomeProva, descricao, data, pontuacaoMaxima });
+      alert('Prova cadastrada com sucesso!');
+      event.target.reset();
+    });
+  
+    // Função para registrar pontuação
+    document.getElementById("formPontuacao").addEventListener("submit", function(event) {
+      event.preventDefault();
+      const equipe = event.target.equipe.value;
+      const prova = event.target.prova.value;
+      const pontuacao = event.target.pontuacao.value;
+  
+      pontuacoes.push({ equipe, prova, pontuacao });
+      alert('Pontuação registrada com sucesso!');
+      event.target.reset();
+      atualizarRanking();
+    });
+  
+    // Função para atualizar o ranking com as pontuações totais
+    function atualizarRanking() {
+      const ranking = {};
+  
+      // Soma as pontuações das equipes
+      pontuacoes.forEach(pontuacao => {
+        if (!ranking[pontuacao.equipe]) {
+          ranking[pontuacao.equipe] = 0;
+        }
+        ranking[pontuacao.equipe] += parseInt(pontuacao.pontuacao);
+      });
+  
+      // Ordena as equipes pela pontuação
+      const rankingArray = Object.entries(ranking)
+        .map(([equipe, pontuacao]) => ({ equipe, pontuacao }))
+        .sort((a, b) => b.pontuacao - a.pontuacao);
+  
+      // Atualiza a tabela de ranking
+      const tbody = document.querySelector("table tbody");
+      tbody.innerHTML = '';
+  
+      rankingArray.forEach((equipe, index) => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${index + 1}º</td>
+          <td>${equipe.equipe}</td>
+          <td>${equipe.pontuacao}</td>
+        `;
+        tbody.appendChild(row);
+      });
+    }
+  </script>
   
 </body>
 </html>
