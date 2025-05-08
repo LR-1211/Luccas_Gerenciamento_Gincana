@@ -1,92 +1,192 @@
-/* Reset básico */
+/* Reset */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  body {
-    font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Paleta base */
+:root {
+  --primary: #6a00f4;
+  --primary-dark: #5200b6;
+  --primary-light: #a566ff;
+  --background: #10002b;
+  --surface: rgba(255, 255, 255, 0.06);
+  --text: #f8f9fa;
+  --accent: #e0aaff;
+  --highlight: #c77dff;
+}
+
+/* Base do corpo */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, var(--background), #240046);
+  color: var(--text);
+  padding: 0 20px;
+  min-height: 100vh;
+}
+
+/* Cabeçalho */
+header {
+  text-align: center;
+  padding: 40px 0 20px;
+  background: var(--primary);
+  color: white;
+  border-radius: 0 0 20px 20px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+}
+
+header h1 {
+  font-size: 2.5rem;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+}
+
+/* Navegação em abas */
+.tabs {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 15px;
+}
+
+.tab {
+  background-color: var(--surface);
+  color: var(--accent);
+  padding: 10px 18px;
+  border: 2px solid var(--accent);
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.tab:hover,
+.tab.active {
+  background-color: var(--highlight);
+  color: #fff;
+  border-color: var(--highlight);
+}
+
+/* Conteúdo das abas */
+.tab-content {
+  display: none;
+  background: var(--surface);
+  backdrop-filter: blur(10px);
+  padding: 30px;
+  margin: 30px auto;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  max-width: 750px;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+/* Títulos */
+h2 {
+  color: var(--accent);
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+}
+
+/* Formulários */
+form label {
+  display: block;
+  margin-top: 20px;
+  font-weight: 600;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="number"],
+textarea {
+  width: 100%;
+  padding: 12px;
+  margin-top: 6px;
+  border: 1px solid var(--primary-light);
+  border-radius: 8px;
+  font-size: 1rem;
+  background-color: rgba(255, 255, 255, 0.08);
+  color: var(--text);
+  transition: border 0.2s ease, background 0.3s;
+}
+
+input:focus,
+textarea:focus {
+  border-color: var(--highlight);
+  background-color: rgba(255, 255, 255, 0.15);
+  outline: none;
+}
+
+/* Botões */
+button {
+  margin-top: 25px;
+  padding: 12px 30px;
+  background-color: var(--primary-dark);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+button:hover {
+  background-color: var(--highlight);
+}
+
+/* Tabela de ranking */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 25px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+table thead {
+  background-color: var(--primary-dark);
+  color: white;
+}
+
+th, td {
+  padding: 14px;
+  border: 1px solid rgba(255,255,255,0.1);
+  text-align: center;
+}
+
+tbody tr:nth-child(odd) {
+  background-color: rgba(255, 255, 255, 0.03);
+}
+
+tbody tr:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .tab-content {
     padding: 20px;
-    background-color: #f2f2f2;
-    color: #333;
   }
-  
-  h1 {
-    text-align: center;
-    margin-bottom: 30px;
+
+  header h1 {
+    font-size: 2rem;
   }
-  
-  section {
-    background-color: #fff;
-    padding: 20px;
-    margin-bottom: 30px;
-    border-radius: 8px;
-    box-shadow: 0 0 8px rgba(0,0,0,0.1);
+
+  .tab {
+    padding: 8px 14px;
+    font-size: 0.95rem;
   }
-  
-  h2 {
-    margin-bottom: 15px;
-    color: #007BFF;
-  }
-  
-  form label {
-    display: block;
-    margin-bottom: 10px;
-    font-weight: bold;
-  }
-  
-  input[type="text"],
-  input[type="email"],
-  input[type="tel"],
-  input[type="number"],
-  input[type="datetime-local"],
-  textarea,
-  select {
-    width: 100%;
-    padding: 8px;
-    margin-top: 4px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  textarea {
-    resize: vertical;
-  }
-  
-  button {
-    margin-top: 15px;
-    padding: 10px 20px;
-    background-color: #007BFF;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  button:hover {
-    background-color: #0056b3;
-  }
-  
-  hr {
-    margin: 40px 0;
-  }
-  
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    background-color: white;
-  }
-  
-  table th,
-  table td {
+
+  table th, table td {
     padding: 10px;
-    text-align: center;
-    border: 1px solid #ccc;
   }
-  
-  table th {
-    background-color: #007BFF;
-    color: white;
-  }
-  
+}

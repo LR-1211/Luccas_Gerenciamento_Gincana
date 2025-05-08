@@ -4,200 +4,110 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Sistema de Gincana</title>
-  <link rel="stylesheet" href="style.css">
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 20px;
-      background-color: #f9f9f9;
-    }
-    h2 {
-      color: #333;
-    }
-    form {
-      background-color: #fff;
-      padding: 15px;
-      margin-bottom: 30px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-    label {
-      display: block;
-      margin-top: 10px;
-    }
-    input, select, textarea {
-      width: 100%;
-      padding: 8px;
-      margin-top: 5px;
-    }
-    button {
-      margin-top: 15px;
-      padding: 10px 20px;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 10px;
-    }
-    th, td {
-      border: 1px solid #aaa;
-      padding: 8px;
-      text-align: left;
-    }
-    th {
-      background-color: #eee;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <header>
+    <h1>Sistema de Gincana</h1>
+    <nav class="tabs">
+      <button class="tab active" data-tab="equipes">Equipes</button>
+      <button class="tab" data-tab="provas">Provas</button>
+      <button class="tab" data-tab="pontuacao">Pontuação</button>
+      <button class="tab" data-tab="ranking">Ranking</button>
+    </nav>
+  </header>
 
-  <h2>Cadastro de Equipe</h2>
-  <form id="formEquipe">
-    <label>Nome da Equipe:</label>
-    <input type="text" name="nomeEquipe" required />
+  <main>
+    <!-- Aba: Equipes -->
+    <section id="equipes" class="tab-content active">
+      <h2>Cadastro de Equipe</h2>
+      <form id="formEquipe">
+        <label for="nomeEquipe">Nome da Equipe:</label>
+        <input type="text" id="nomeEquipe" name="nomeEquipe" required />
 
-    <label>Responsável:</label>
-    <input type="text" name="responsavel" required />
+        <label for="responsavelEquipe">Responsável:</label>
+        <input type="text" id="responsavelEquipe" name="responsavel" required />
 
-    <label>Email:</label>
-    <input type="email" name="email" required />
+        <label for="emailEquipe">Gmail:</label>
+        <input type="email" id="emailEquipe" name="email" required />
 
-    <label>Integrantes (separados por vírgula):</label>
-    <input type="text" name="integrantes" />
+        <label for="integrantesEquipe">Integrantes (separados por vírgula):</label>
+        <input type="text" id="integrantesEquipe" name="integrantes" />
 
-    <button type="submit">Cadastrar Equipe</button>
-  </form>
+        <button type="submit">Cadastrar Equipe</button>
+      </form>
+    </section>
 
-  <h2>Cadastro de Prova</h2>
-  <form id="formProva">
-    <label>Nome da Prova:</label>
-    <input type="text" name="nomeProva" required />
+    <!-- Aba: Provas -->
+    <section id="provas" class="tab-content">
+      <h2>Cadastro de Prova</h2>
+      <form id="formProva">
+        <label for="nomeProva">Nome da Prova:</label>
+        <input type="text" id="nomeProva" name="nomeProva" required />
 
-    <label>Descrição:</label>
-    <textarea name="descricao" rows="3"></textarea>
+        <label for="responsavelProva">Responsável:</label>
+        <input type="text" id="responsavelProva" name="responsavel" required />
 
-    <label>Data:</label>
-    <input type="date" name="data" />
+        <label for="pontuacaoMaxima">Pontuação Máxima:</label>
+        <input type="number" id="pontuacaoMaxima" name="pontuacaoMaxima" required />
 
-    <label>Pontuação Máxima:</label>
-    <input type="number" name="pontuacaoMaxima" />
+        <label for="descricaoProva">Descrição:</label>
+        <textarea id="descricaoProva" name="descricao" rows="3"></textarea>
 
-    <button type="submit">Cadastrar Prova</button>
-  </form>
+        <button type="submit">Cadastrar Prova</button>
+      </form>
+    </section>
 
-  <h2>Registro de Pontuação</h2>
-  <form id="formPontuacao">
-    <label>Equipe:</label>
-    <input type="text" name="equipe" required />
+    <!-- Aba: Pontuação -->
+    <section id="pontuacao" class="tab-content">
+      <h2>Registro de Pontuação</h2>
+      <form id="formPontuacao">
+        <label for="equipePontuacao">Equipe:</label>
+        <select id="equipePontuacao" name="equipe" required>
+          <option value="" disabled selected>Selecione uma equipe</option>
+          <!-- Opções inseridas via JavaScript -->
+        </select>
 
-    <label>Prova:</label>
-    <input type="text" name="prova" required />
+        <label for="provaPontuacao">Prova:</label>
+        <select id="provaPontuacao" name="prova" required>
+          <option value="" disabled selected>Selecione uma prova</option>
+          <!-- Opções inseridas via JavaScript -->
+        </select>
 
-    <label>Pontuação Obtida:</label>
-    <input type="number" name="pontuacao" required />
+        <label for="pontuacaoObtida">Pontuação Obtida:</label>
+        <input type="number" id="pontuacaoObtida" name="pontuacao" required />
 
-    <button type="submit">Registrar Pontuação</button>
-  </form>
+        <button type="submit">Registrar Pontuação</button>
+      </form>
+    </section>
 
-  <h2>Ranking (Exemplo Estático)</h2>
-  <table>
-    <thead>
-      <tr>
-        <th>Posição</th>
-        <th>Equipe</th>
-        <th>Pontuação Total</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>1º</td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>2º</td>
-        <td></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <script>
-    // Arrays para armazenar as informações das equipes, provas e pontuação
-    const equipes = [];
-    const provas = [];
-    const pontuacoes = [];
-  
-    // Função para cadastrar equipe
-    document.getElementById("formEquipe").addEventListener("submit", function(event) {
-      event.preventDefault();
-      const nomeEquipe = event.target.nomeEquipe.value;
-      const responsavel = event.target.responsavel.value;
-      const email = event.target.email.value;
-      const integrantes = event.target.integrantes.value.split(',');
-  
-      equipes.push({ nomeEquipe, responsavel, email, integrantes });
-      alert('Equipe cadastrada com sucesso!');
-      event.target.reset();
-    });
-  
-    // Função para cadastrar prova
-    document.getElementById("formProva").addEventListener("submit", function(event) {
-      event.preventDefault();
-      const nomeProva = event.target.nomeProva.value;
-      const descricao = event.target.descricao.value;
-      const data = event.target.data.value;
-      const pontuacaoMaxima = event.target.pontuacaoMaxima.value;
-  
-      provas.push({ nomeProva, descricao, data, pontuacaoMaxima });
-      alert('Prova cadastrada com sucesso!');
-      event.target.reset();
-    });
-  
-    // Função para registrar pontuação
-    document.getElementById("formPontuacao").addEventListener("submit", function(event) {
-      event.preventDefault();
-      const equipe = event.target.equipe.value;
-      const prova = event.target.prova.value;
-      const pontuacao = event.target.pontuacao.value;
-  
-      pontuacoes.push({ equipe, prova, pontuacao });
-      alert('Pontuação registrada com sucesso!');
-      event.target.reset();
-      atualizarRanking();
-    });
-  
-    // Função para atualizar o ranking com as pontuações totais
-    function atualizarRanking() {
-      const ranking = {};
-  
-      // Soma as pontuações das equipes
-      pontuacoes.forEach(pontuacao => {
-        if (!ranking[pontuacao.equipe]) {
-          ranking[pontuacao.equipe] = 0;
-        }
-        ranking[pontuacao.equipe] += parseInt(pontuacao.pontuacao);
-      });
-  
-      // Ordena as equipes pela pontuação
-      const rankingArray = Object.entries(ranking)
-        .map(([equipe, pontuacao]) => ({ equipe, pontuacao }))
-        .sort((a, b) => b.pontuacao - a.pontuacao);
-  
-      // Atualiza a tabela de ranking
-      const tbody = document.querySelector("table tbody");
-      tbody.innerHTML = '';
-  
-      rankingArray.forEach((equipe, index) => {
-        const row = document.createElement('tr');
-        row.innerHTML = `
-          <td>${index + 1}º</td>
-          <td>${equipe.equipe}</td>
-          <td>${equipe.pontuacao}</td>
-        `;
-        tbody.appendChild(row);
-      });
-    }
-  </script>
-  
+    <!-- Aba: Ranking -->
+    <section id="ranking" class="tab-content">
+      <h2>Ranking das Equipes</h2>
+      <table id="rankingTable">
+        <thead>
+          <tr>
+            <th>Posição</th>
+            <th>Equipe</th>
+            <th>Pontuação Total</th>
+          </tr>
+        </thead>
+        <tbody id="rankingBody">
+          <tr>
+            <td>1º</td>
+            <td>Equipe Exemplo</td>
+            <td>100</td>
+          </tr>
+          <tr>
+            <td>2º</td>
+            <td>Time Legal</td>
+            <td>85</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
 </body>
 </html>
